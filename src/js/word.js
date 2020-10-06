@@ -30,6 +30,6 @@ export default class Word {
       for (let i = 0; i < indice.length; i += 1) { newArray[indice[i]] = userLetter; }
       return guessWord;
     }
-    return 'enlever vie';
+    return false;
   }
 }
