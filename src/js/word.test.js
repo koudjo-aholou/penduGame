@@ -23,7 +23,19 @@ it('Should say how many times the letter chosen by the user is present in the wo
 
 it('Should display the letters find by the user', () => {
   const pendu = new Word('humus');
-  const letterExist = pendu.checkLetterExist('u', pendu.answer);
-  const displayLetters = pendu.displayLetter(letterExist, 'u', pendu.hidingWord);
+  let letterExist = pendu.checkLetterExist('u', pendu.answer);
+  let displayLetters = pendu.displayLetter(letterExist, 'u', pendu.hidingWord);
   expect(displayLetters).toEqual(['_', 'u', '_', 'u', '_']);
+  letterExist = pendu.checkLetterExist('h', pendu.answer);
+  displayLetters = pendu.displayLetter(letterExist, 'h', pendu.hidingWord);
+  expect(displayLetters).toEqual(['h', 'u', '_', 'u', '_']);
+  letterExist = pendu.checkLetterExist('m', pendu.answer);
+  displayLetters = pendu.displayLetter(letterExist, 'm', pendu.hidingWord);
+  expect(displayLetters).toEqual(['h', 'u', 'm', 'u', '_']);
+});
+
+it('Should remove 1 point of life if the letter does not exist', () => {
+  const pendu = new Word('humus');
+  const letterExist = pendu.checkLetterExist('u', pendu.answer);
+  expect(letterExist.length).toEqual(2);
 });
