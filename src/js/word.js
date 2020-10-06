@@ -1,3 +1,4 @@
+/* eslint-disable class-methods-use-this */
 function splitLettersOfWord(word) {
   return word.split('');
 }
@@ -19,14 +20,16 @@ export default class Word {
     while (index !== -1) {
       indice.push(index);
       index = (index > 0 ? answer.lastIndexOf(userLetter, index - 1) : -1);
-    };
+    }
     return indice;
   }
 
-  displayLetter(indice, userLetter, guessWord){
+  displayLetter(indice, userLetter, guessWord) {
+    const newArray = guessWord;
     if (indice.length > 0) {
-     for(let i=0; i< indice.length; i++) { guessWord[indice[i]] = userLetter };
+      for (let i = 0; i < indice.length; i += 1) { newArray[indice[i]] = userLetter; }
       return guessWord;
     }
+    return 'enlever vie';
   }
 }
