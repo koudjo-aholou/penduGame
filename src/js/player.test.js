@@ -5,7 +5,7 @@ it('Should create a player name', () => {
   expect(player.name).toEqual('Koudjo');
 });
 
-it('Should initiate 3 life for a player', () => {
+it('Should initiate 3 lifes for a player', () => {
   const player = new Player('Koudjo');
   expect(player.life).toEqual(3);
 });
@@ -13,6 +13,15 @@ it('Should initiate 3 life for a player', () => {
 it('Should remove 1 point of life if the letter does not exist', () => {
   const player = new Player('Koudjo');
   const displayLetters = false;
-  if (displayLetters === false) { player.life -= 1; }
+  player.checkDamage(displayLetters);
   expect(player.life).toEqual(2);
+});
+
+it('Should say gameover', () => {
+  const player = new Player('Koudjo');
+  const displayLetters = false;
+  player.checkDamage(displayLetters);
+  player.checkDamage(displayLetters);
+  player.checkDamage(displayLetters);
+  expect(player.gameOver).toEqual(true);
 });
