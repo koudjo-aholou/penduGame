@@ -3,8 +3,17 @@ function splitLettersOfWord(word) {
   return word.split('');
 }
 
+function generateNumber(min, max) {
+  const minInt = Math.ceil(min);
+  const maxInt = Math.floor(max);
+  return Math.floor(Math.random() * (maxInt - minInt + 1)) + minInt;
+}
+
 function hideLettersOfWord(word) {
-  return word.replace(/./g, '_').split('');
+  const wordHiding = word.replace(/./g, '_').split('');
+  const index = generateNumber(0, word.length);
+  wordHiding[index] = word[index];
+  return wordHiding;
 }
 
 export default class Word {

@@ -6,13 +6,9 @@ it('Should start the game and player win', () => {
   const game = new Game(true);
   const player = new Player('Koudjo');
   const pendu = new Word('humus');
+  pendu.hidingWord = ['h', '_', '_', '_', '_'];
   let letterExist = pendu.checkLetterExist('u', pendu.answer);
   let displayLetters = pendu.displayLetter(letterExist, 'u', pendu.hidingWord);
-  player.checkDamage(displayLetters);
-  expect(displayLetters).toEqual(['_', 'u', '_', 'u', '_']);
-
-  letterExist = pendu.checkLetterExist('h', pendu.answer);
-  displayLetters = pendu.displayLetter(letterExist, 'h', pendu.hidingWord);
   player.checkDamage(displayLetters);
   expect(displayLetters).toEqual(['h', 'u', '_', 'u', '_']);
 
