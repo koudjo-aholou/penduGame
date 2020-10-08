@@ -20,6 +20,12 @@ function generateNumber(min, max) {
   const maxInt = Math.floor(max);
   return Math.floor(Math.random() * (maxInt - minInt + 1)) + minInt;
 }
+
+function validateLetter(letter) {
+  const regex = /^([a-zA-ZàèìòùÀÈÌÒÙáéíóúýÁÉÍÓÚÝâêîôûÂÊÎÔÛãñõÃÑÕäëïöüÿÄËÏÖÜŸçÇßØøÅåÆæœ]{1})$/g;
+  const result = regex.test(letter);
+  return result;
+}
 /**
  *
  * @param {string} word
@@ -53,6 +59,7 @@ export default class Word {
  */
 
   checkLetterExist(userLetter, answer) {
+    if (validateLetter(userLetter) === false) { throw new Error('You must write one correct character!'); }
     const indice = [];
     let index = answer.lastIndexOf(userLetter.toLowerCase());
     while (index !== -1) {
@@ -66,14 +73,13 @@ export default class Word {
    *
    * @param {Array.<number[]>} indice
    * @param {string} userLetter
-   * @param {Array.<string[]>} guessWord
+   * @property {Array.<string[]>} hidingWord
    * @returns {(Array)}
    */
-  displayLetter(indice, userLetter, guessWord) {
-    const newArray = guessWord;
+  displayLetter(indice, userLetter) {
     if (indice.length > 0) {
-      for (let i = 0; i < indice.length; i += 1) { newArray[indice[i]] = userLetter; }
-      return guessWord;
+      for (let i = 0; i < indice.length; i += 1) { this.hidingWord[indice[i]] = userLetter; }
+      return this.hidingWord;
     }
     return [];
   }
