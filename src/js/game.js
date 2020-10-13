@@ -3,11 +3,9 @@ export default class Game {
    *
    * @param {boolean} start
    * @property {boolean} startGame
-   *  @property {boolean} endGame
    */
   constructor(start) {
     this.startGame = start;
-    this.endGame = false;
   }
 
   /**
@@ -16,6 +14,7 @@ export default class Game {
  * @returns {boolean}
  */
   checkEndGame(word) {
-    this.endGame = !word.includes('_');
+    const emptyCases = '_';
+    this.startGame = word.includes(emptyCases);
   }
 }

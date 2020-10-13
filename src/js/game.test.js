@@ -2,9 +2,13 @@ import Word from './word';
 import Player from './player';
 import Game from './game';
 
-it('Should start the game and player win', () => {
+it('Should return start the game', () => {
   const game = new Game(true);
-  const player = new Player('Koudjo');
+  expect(game.startGame).toEqual(true);
+});
+
+it('Should start the game and player win', () => {
+  const player = new Player('Koudjo', true);
   const pendu = new Word('humus');
   pendu.hidingWord = ['h', '_', '_', '_', '_'];
   let letterExist = pendu.checkLetterExist('u', pendu.answer);
@@ -21,18 +25,11 @@ it('Should start the game and player win', () => {
   displayLetters = pendu.displayLetter(letterExist, 'm', pendu.hidingWord);
   player.checkDamage(displayLetters);
   expect(displayLetters).toEqual(['h', 'u', 'm', 'u', '_']);
-
-  letterExist = pendu.checkLetterExist('s', pendu.answer);
-  displayLetters = pendu.displayLetter(letterExist, 's', pendu.hidingWord);
-  player.checkDamage(displayLetters);
-  game.checkEndGame(displayLetters);
-  expect(displayLetters).toEqual(['h', 'u', 'm', 'u', 's']);
-  expect(game.endGame).toEqual(true);
 });
 it('Should say player win the the game', () => {
   const pendu = new Word('humus');
   const game = new Game(true);
   pendu.hidingWord = ['h', 'u', 'm', 'u', 's'];
   game.checkEndGame(pendu.hidingWord);
-  expect(game.endGame).toEqual(true);
+  expect(game.startGame).toEqual(false);
 });

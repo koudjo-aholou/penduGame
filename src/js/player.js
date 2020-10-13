@@ -1,4 +1,6 @@
-export default class Player {
+import Game from './game';
+
+export default class Player extends Game {
   /**
    *
    * @param {string} name
@@ -6,8 +8,10 @@ export default class Player {
    * @property {number} life
    * @property {boolean} gameover
    */
-  constructor(name) {
+  constructor(name, start) {
+    super(name, start);
     if (typeof name !== 'string') { throw new Error('Name must be a string!'); }
+    this.startGame = start;
     this.name = name;
     this.life = 3;
     this.gameOver = false;
